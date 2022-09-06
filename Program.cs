@@ -1,53 +1,54 @@
-﻿//Задача 2: Напишите программу, которая на вход принимает два числа и выдаёт, какое число большее, а какое меньшее.
-Console.WriteLine("Введите первое число: ");
-int first = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите второе число: ");
-int second = int.Parse(Console.ReadLine());
-if (first > second) {
-    Console.WriteLine("Первое число больше второго");
-} else if (first < second) {
-    Console.WriteLine("Второе число больше первого");
-} else {
-    Console.WriteLine("Числа равны");
-} 
+﻿//Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает 
+//вторую цифру этого числа.
+ 
+ Console.WriteLine("Введите число больше 10: ");
+ try {
+    String? a = Console.ReadLine();
+    Console.WriteLine(secondChar(a));
+ } catch (Exception e) {
+    Console.WriteLine("Введите число");
+ }
 
-// Задача 4: Напишите программу, которая принимает на вход три числа и выдаёт максимальное из этих чисел.
-
-Console.WriteLine("Введите первое число: ");
-int a = int.Parse(Console.ReadLine());
-int max = a;
-Console.WriteLine("Введите второе число: ");
-int b = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите Третье число: ");
-int c = int.Parse(Console.ReadLine());
-if (max <= b) {
-    max = b;
-} 
-if ( max <= c){
-    max = c;
-} 
-Console.WriteLine($"Максимальное число: {max}"); 
-
-// Задача 6: Напишите программу, которая на вход принимает число и выдаёт, является ли число чётным (делится ли оно на два без остатка).
-
-Console.WriteLine("Введите число: ");
-int a = int.Parse(Console.ReadLine());
-
-if (a % 2 == 0) {
-    Console.WriteLine("Число четное ");
-} else {
-    Console.WriteLine("Число нечетное ");
+String secondChar(String? number){
+    if (number != null && number.Length >= 2) {
+        return number.ToString().Substring(1,1);
+    } else {
+        return "Число меньше 10";
+    }
 }
 
-// Задача 8: Напишите программу, которая на вход принимает число (N), а на выходе показывает все чётные числа от 1 до N.
+//Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает,
+// что третьей цифры нет.
 
-Console.WriteLine("Введите число: ");
-int a = int.Parse(Console.ReadLine());
+Console.WriteLine("Введите число больше 99: ");
+ try {
+    int a = int.Parse(Console.ReadLine());
+    Console.WriteLine(threeChar(a.ToString()));
+ } catch (Exception e) {
+    Console.WriteLine("Введите число");
+ }
 
-while (a >= 0) {
-    a--;
-    if (a % 2 == 0) {
-        Console.WriteLine($"{a}; ");
+String threeChar(String? number){
+    if (number != null && number.Length >= 3) {
+        return number.ToString().Substring(2,1);
+    } else {
+        return "третьей цифры нет";
     }
-    
+} 
+
+//Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
+
+Console.WriteLine("Введите число число недели: ");
+try {
+    int a = int.Parse(Console.ReadLine());
+    Console.WriteLine(checkNumberDayWeek(a));
+ } catch (Exception e) {
+    Console.WriteLine("Введите число");
+ }
+String checkNumberDayWeek(int numberWeekDay){
+        if (numberWeekDay == 6 || numberWeekDay == 7) {
+            return "Да";
+        } else {
+            return "Нет";
+        }
 }
