@@ -1,54 +1,97 @@
-﻿//Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает 
-//вторую цифру этого числа.
- 
- Console.WriteLine("Введите число больше 10: ");
- try {
-    String? a = Console.ReadLine();
-    Console.WriteLine(secondChar(a));
- } catch (Exception e) {
-    Console.WriteLine("Введите число");
- }
+﻿/* Задача 19
+Напишите программу, которая принимает на вход пятизначное число и проверяет, 
+является ли оно палиндромом.
+14212 -> нет
+12821 -> да
+23432 -> да  */
 
-String secondChar(String? number){
-    if (number != null && number.Length >= 2) {
-        return number.ToString().Substring(1,1);
-    } else {
-        return "Число меньше 10";
-    }
+ Console.WriteLine("Введите число");
+int number = Math.Abs(int.Parse(Console.ReadLine()));
+if (number >= 10000 && number <= 99999) {
+    Array ar = getArray(number);
+    Console.WriteLine(checkPalindrom(ar));
+} else {
+    Console.WriteLine("Введите 5ти значное число");
 }
 
-//Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает,
-// что третьей цифры нет.
-
-Console.WriteLine("Введите число больше 99: ");
- try {
-    int a = int.Parse(Console.ReadLine());
-    Console.WriteLine(threeChar(a.ToString()));
- } catch (Exception e) {
-    Console.WriteLine("Введите число");
- }
-
-String threeChar(String? number){
-    if (number != null && number.Length >= 3) {
-        return number.ToString().Substring(2,1);
-    } else {
-        return "третьей цифры нет";
+Array getArray(int number){
+   int num = number;
+   int[] array = new int[5];
+   for(int i = 0 ; i <= 4 ; i++){
+        array[i] = num % 10;
+        num = num / 10;
     }
+    Array.Reverse(array);
+    return array;
+}
+
+String checkPalindrom(Array a){
+    int n = a.Length;
+    Boolean flag = false;
+    for (int i = 0; i <= n / 2; i++){
+        if (a.GetValue(i).Equals(a.GetValue(n-i-1))) {
+            flag = true;
+        } else {
+            flag = false;
+            break;
+        }
+    }
+    if (flag) {
+        return "ДА";
+    } else {
+        return "НЕТ";
+    }  
 } 
 
-//Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
-
-Console.WriteLine("Введите число число недели: ");
-try {
-    int a = int.Parse(Console.ReadLine());
-    Console.WriteLine(checkNumberDayWeek(a));
- } catch (Exception e) {
-    Console.WriteLine("Введите число");
- }
-String checkNumberDayWeek(int numberWeekDay){
-        if (numberWeekDay == 6 || numberWeekDay == 7) {
-            return "Да";
-        } else {
-            return "Нет";
-        }
+/*
+Задача 21
+Напишите программу, которая принимает на вход координаты двух точек 
+и находит расстояние между ними в 3D пространстве.
+A (3,6,8); B (2,1,-7), -> 15.84
+A (7,-5, 0); B (1,-1,9) -> 11.53 */
+//Формируем первый массив
+int[] t1 = new int[3];
+int[] t2 = new int[3];
+try { 
+String[] dict = {"X","Y","Z"};
+for (int i = 0; i < dict.Length; i++){
+    Console.WriteLine($"Введите координату {dict[i]} для первой точки");
+    t1[i]= int.Parse(Console.ReadLine());      
 }
+for (int i = 0; i < dict.Length; i++){
+    Console.WriteLine($"Введите координату {dict[i]} для второй точки");
+    t2[i] = int.Parse(Console.ReadLine());
+}
+
+Console.Write(Math.Round(distance(t1,t2),2));
+Double distance(int[] t1, int[] t2){
+    Double x = Math.Pow((t2[0] - t1[0]),2);
+    Double y = Math.Pow((t2[1] - t1[1]),2);
+    Double z = Math.Pow((t2[2] - t1[2]),2);
+    return Math.Sqrt(x+y+z);
+}
+
+ } catch (Exception e) {
+        Console.Write("Ввели не правильное число");
+    }
+
+/*
+Задача 23
+Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+3 -> 1, 8, 27
+5 -> 1, 8, 27, 64, 125
+*/
+try {
+    Console.WriteLine("Сколько нужно чисел ?");
+int n = int.Parse(Console.ReadLine());
+getPow(n);
+void getPow(int n){
+    for (int i = 1; i <= n; i ++){
+        Double result = Math.Pow(i,3); 
+        Console.Write($" {result},");  
+    } 
+}
+} catch (Exception e) {
+    Console.Write("Ввели не правильное число");
+}
+
